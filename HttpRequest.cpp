@@ -11,6 +11,7 @@
 #include <cstring>
 #include <cstdarg>
 #include <vector>
+#include <unistd.h>
 
 #include <arpa/inet.h>
 #include <assert.h>
@@ -24,7 +25,7 @@
 // Convert IP or Hostname into a usable IP structure (in_addr).
 struct in_addr* addressToIP(const char *address)
 {
-  // Case for IP address like: www.xxx.yyy.zzz 
+  // Case for IP address like: www.xxx.yyy.zzz
   static struct in_addr addr;
 
   if (inet_aton(address, &addr) != 0)
@@ -183,7 +184,7 @@ void HttpRequest::processRequest()
   if (!moreData(_socket)) return;
 
   unsigned char data[MaxSocketRecvSize];
-  
+
   int bytesReceived = recv(_socket, (char*)data, sizeof(data), 0);
 
   if (bytesReceived < 0)
@@ -361,4 +362,3 @@ void HttpRequest::send(const unsigned char *data, int sizeOfData)
     data += bytesSent;
   }
 }
-

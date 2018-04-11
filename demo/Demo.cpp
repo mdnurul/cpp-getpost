@@ -43,9 +43,9 @@ void responseComplete(const HttpResponse *response, void *additionalParams)
 void demoGet()
 {
   printf("\n-------------------------- GET Request --------------------------\n");
-  HttpRequest request("hyperceptive.org", 80);
+  HttpRequest request("aitlhttp.herokuapp.com", 80);
   request.initCallbacks(headersReady, receiveData, responseComplete, 0);
-  request.sendRequest("GET", "/", 0, 0, 0);
+  request.sendRequest("GET", "/httprequest/", 0, 0, 0);
 
   while(request.responsesPending())
   {
@@ -65,11 +65,11 @@ void demoPost()
     0  //null terminator
   };
 
-  const char *body = "cdip_path=data_access%2Fjustdar.cdip%3F142%2Bdd%2B";
+  const char *body = "Name=Md N Hassan";
 
-  HttpRequest request("codebones.com", 80);
+  HttpRequest request("aitlhttp.herokuapp.com", 80);
   request.initCallbacks(headersReady, receiveData, responseComplete, 0);
-  request.sendRequest("POST", "/cdipProxy.php", headers, (const unsigned char*)body, strlen(body));
+  request.sendRequest("POST", "/httprequest/", headers, (const unsigned char*)body, strlen(body));
 
   while(request.responsesPending())
   {
